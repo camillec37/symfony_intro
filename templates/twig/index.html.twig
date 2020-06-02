@@ -1,0 +1,10 @@
+{# le template hérite du template base.html.twig à la racine de templates#}
+{% extends 'base.html.twig' %}
+
+{# surcharge en ajoutant grace a {{ parent() }} du bloc title défini dans base.html.twig #}
+{% block title %}{{ parent() }} - Twig{% endblock %}
+
+{# surcharge ( en remplacement) du bloc body défini dans base.html.twig #}
+{% block body %}
+
+{% endblock %}
