@@ -1,0 +1,11 @@
+    /*
+     * Faire une page avec un formulaire en post avec :
+     * - email (text)
+     * - message (textarea)
+     *
+     * Si le formulaire est envoyé, vérifier que les deux champs sont remplis
+     * Si non, afficher un message d'erreur
+     * Si oui, enregistrer les valeurs en session et rediriger vers
+     * une nouvelle page qui les affiche et vide la session
+     * Dans cette page, si la session est vide, on redirige vers le formulaire
+     */

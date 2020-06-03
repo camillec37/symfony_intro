@@ -47,7 +47,7 @@ class IndexController extends AbstractController
 
     /**
      * Partie variable de l'url entre accolades :
-     * La route matche /bonjour/camille et /bonjou/ben
+     * La route matche /bonjour/camille et /bonjour/ben
      * Le$qui en paramètre de la méthode contient la valeur
      * de la partie variable {qui} de l'url
      *
