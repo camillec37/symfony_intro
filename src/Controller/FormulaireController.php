@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,45 +17,54 @@ class FormulaireController extends AbstractController
      */
     public function index(Request $request, SessionInterface $session)
     {
+        $erreur ='';
+
         if ($request->isMethod('POST')) {
 
-            if(empty($_POST['email']) || empty($_POST['message'])){
-                trigger_error('tous les champs doivent etre remplis');
+            //$data contient tout le tableau de $_POST
+            $data = $request->request->all();
+
+            if(!empty($data['email']) && !empty($data['message'])){
+
+                $session->set('email', $data['email']);
+                $session->set('message', $data['message']);
+
+                return $this->redirectToRoute("app_formulaire_affichage");
+
+            } else {
+                $erreur = 'Tous les champs doivent etre remplis';
             }
 
-            $session->set('email', $_POST['email']);
-            $session->set('message', $_POST['message']);
-
-            $email = $session->get('email');
-            $message = $session->get('message');
-
-
-            return $this->redirectToRoute("app_formulaire_affichage",
-            [
-                'email' => $email,
-                'message' => $message
-            ]
-        );
         }
 
-        return $this->render('formulaire/index.html.twig');
+        return $this->render('formulaire/index.html.twig',
+        [
+            'erreur' => $erreur
+        ]);
 
     }
 
 
     /**
+     * nom de la route app_formulaire_affichage
      * @Route("/affichage")
      */
-    public function affichage()
+    public function affichage(SessionInterface $session)
     {
-        //$session->clear();
+        if(empty($session->all())) {
+            return $this->redirectToRoute('app_formulaire_index');
+        }
 
-        return $this->render('formulaire/affichage.html.twig');
+        $message = $session->get('message');
+        $email =   $session->get('email');
 
+        $session->clear();
+
+        return $this->render('formulaire/affichage.html.twig',
+            [
+                'email' => $email,
+                'message' => $message
+            ]);
     }
-
-
-
-
 
 }

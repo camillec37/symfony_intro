@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# form en get par défaut si on ne précise pas #}
+    <form>
+        <input type="email" name="email" placeholder="Email">
+        <button type="submit">Chercher</button>
+    </form>
+
+    {# si le controleur a passé une variable user, c'est qu'il y
+     a eu une recherche #}
+    {% if user is defined %}
+
+        {# si l'email recherché existe dans la table #}
+        {% if user is not null %}
+            <p>L'utilisateur est {{ user.firstname }} {{ user.lastname }}</p>
+        {% else %}
+            <p>Aucun utilisateur avec cet email</p>
+         {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+

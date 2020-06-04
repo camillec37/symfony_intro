@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# lister les utilisateurs dans un tableau html
+    si la dte de naissance est null, ne rien afficher pour ce champ
+    sinon l'afficher au format francais #}
+
+        <table>
+            <thead>
+            <tr>
+                <th colspan="2">Tableau des utilisateurs</th>
+            </tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Date de naissance</th>>
+            </thead>
+            <tbody>
+    {% for user in users  %}
+            <tr>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                {# ternaire en twig, on ne met rien en 3eme paramètre si on ne
+                 veut rien afficher #}
+                <td>{{ user.birthdate ? user.birthdate|date('d/m/Y') }}</td>
+            </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+
+
+
+{% endblock %}
+
+
+

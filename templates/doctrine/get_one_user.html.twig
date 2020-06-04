@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# si l'id reçu dans l'URL existe dans la table #}
+    {% if user is not null %}
+
+        {# appel des getters de firstanme et lastname de l'objet user #}
+        <p>Bonjour {{ user.firstname }} {{ user.lastname }}</p>
+     {% else %}
+        <p>Aucun utilisateur avec cet id</p>
+    {% endif %}
+
+{% endblock %}
+
+
+

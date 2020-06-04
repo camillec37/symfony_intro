@@ -180,4 +180,17 @@ class HttpController extends AbstractController
     }
 
 
+    /**
+     * @Route("/test")
+     * @return Response
+     */
+    public function test()
+    {
+        phpinfo();
+
+        return new Response('');
+    }
+
+
+
 }

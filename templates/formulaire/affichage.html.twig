@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    <div class="example-wrapper">
+
         <h1>Votre inscription</h1>
 
         <h2>Votre email : {{ email }}</h2>
-        <h2>Votre message : {{ message }}</h2>
-    </div>
+        <h2>Votre message : {{ message|nl2br }}</h2>
+
 
 {% endblock %}

@@ -7,6 +7,9 @@
 <div class="example-wrapper">
     <h1>Enregistrez vous</h1>
 
+    {% if erreur is not empty %}
+        <p style="color: red">Erreur : {{ erreur }}</p>
+    {% endif %}
 
     <form method="post">
         <input type="text" name="email" placeholder="Votre email">
